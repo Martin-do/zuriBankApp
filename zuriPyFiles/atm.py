@@ -245,9 +245,9 @@ def update(user):
 def check_balance(user):
     return user[5]
     
-def logout(user):
+def logout():
     print("** Logout successful **")
-    login(user)
+    login()
 
 
 
