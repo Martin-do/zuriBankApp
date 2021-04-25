@@ -27,7 +27,7 @@ def register():
     last_name = input("What is your last name: ")
     email = input("Enter your email address: ")
     password1 = getpass("Enter a new password: ")
-    password2 = getpss("Enter a new password again:")
+    password2 = getpass("Enter a new password again:")
     if password1 == password2:
 
         account_number = generateaccount()
