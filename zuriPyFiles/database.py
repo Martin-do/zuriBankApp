@@ -103,7 +103,6 @@ def authenticated_user(account_number, password):
         # print(user)
         # print(user[4])
         if str(password) == user[4]:
-            print("correct")
             return user
 
     return False
