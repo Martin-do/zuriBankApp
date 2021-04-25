@@ -88,7 +88,10 @@ def banking_operation(user):
         withdraw(user)
         
     elif operation == 3:
-        complain()
+        complain(user)
+        print("Your complain had been logged, Thank you !!!")
+        print("="*30)
+        banking_operation(user)
         
     elif operation == 4:
         transfer(user)
