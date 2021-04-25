@@ -97,7 +97,7 @@ def banking_operation(user):
         transfer(user)
         
     elif operation == 5:
-        logout(user)
+        logout()
 
     elif operation == 6:
         update(user)
