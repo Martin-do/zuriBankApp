@@ -7,7 +7,14 @@ def main():
 
     print("Welcome to My Bank!!!")
 
-    haveaccount()
+    try:
+        haveaccount()
+    except ValueError:
+        print("Incorrect Input,please try again")
+        main()
+    else:
+        print("You have entered an incorrect option")
+        main()
 
 def haveaccount():
 
@@ -50,8 +57,9 @@ def register():
         print("Password does not match")
     
 
-
+count = 0
 def login():
+    global count
     print("====== Login Page ======")
     account_number_from_user = input("What is your account number? \n")
     password = getpass("What is your password \n")
@@ -68,8 +76,15 @@ def login():
     
 
     print('** Invalid account or password **')
+    count +=1
     
-    login()
+    if count < 3:
+    
+    	login()
+    	
+    else:
+    	print("You have reached maximum retries. Good bye")
+    	sys.exit()
 
 
 
