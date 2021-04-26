@@ -74,7 +74,7 @@ def login():
     
             banking_operation(user)
     
-
+	
     print('** Invalid account or password **')
     count +=1
     
@@ -105,7 +105,6 @@ def banking_operation(user):
     elif operation == 3:
         complain(user)
         print("Your complain had been logged, Thank you !!!")
-        print("="*30)
         banking_operation(user)
         
     elif operation == 4:
@@ -182,11 +181,26 @@ def complain():
 
     complain = input("What is your complain: ")
 
+trials = 0
 def transfer(user):
     #check if enough funds
-    destination = int(input("Enter the account number you want to transfer to: "))
+    global trials
+    try:
+        destination = int(input("Enter the account number you want to transfer to: "))
 
-    amount = int(input("Enter the amount you want to transfer: "))
+        amount = int(input("Enter the amount you want to transfer: "))
+    except ValueError:
+        print("Invalid Input")
+        trials += 1
+        if trials < 3:
+            transfer(user)
+        else:
+            print("="*30)
+            print("Maximum retries reached!!")
+            print("="*30)
+            trials = 0
+            banking_operation(user)
+            
     if int(check_balance(user)) >= amount:
         user[5] = int(user[5]) - amount
     else:
@@ -206,14 +220,30 @@ def transfer(user):
         except ValueError:
 
             print("** Invalid Input **")
-
-            withdraw(user)
+            
+            trials += 1
+            if trials < 3:
+                transfer(user)
+            else:
+                print("="*30)
+                print("Maximum retries reached!!")
+                print("="*30)
+                trials = 0
+                banking_operation(user)
 
     else:
 
         print("** Sorry, account not found **")
-
-        banking_operation(user)
+        trials += 1
+        if trials < 3:
+            transfer(user)
+        else:
+            print("="*30)
+            print("Maximum retries reached!!")
+            print("="*30)
+            trials = 0
+            banking_operation(user)
+            
 
 
 def update(user):
